@@ -1,0 +1,63 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.3.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id "io.github.kobylynskyi.graphql.codegen" version "3.0.0"
+    id 'java'
+
+}
+
+group = 'de.uol'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '8'
+
+repositories {
+    maven { url 'https://repo.spring.io/libs-snapshot' }
+    mavenCentral()
+    maven { url "https://repo.osgeo.org/repository/release" }
+
+}
+
+graphqlCodegen {
+    // all config options:
+    // https://github.com/kobylynskyi/graphql-java-codegen/blob/master/docs/codegen-options.md
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/schema-compiled.graphqls".toString()]
+    outputDir = new File("$buildDir/generated")
+    packageName = "de.oul.dssp.source.model"
+    modelNameSuffix = "TO"
+}
+// Automatically generate GraphQL code on project build:
+compileJava.dependsOn 'graphqlCodegen'
+
+// Add generated sources to your project source sets:
+sourceSets.main.java.srcDir "$buildDir/generated"
+
+dependencies {
+
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-validation'
+    compile "io.reactivex.rxjava2:rxjava"
+    compile "io.projectreactor:reactor-core"
+
+    compile "io.projectreactor.rabbitmq:reactor-rabbitmq:1.5.0-SNAPSHOT"
+    compile 'com.graphql-java-kickstart:graphql-spring-boot-starter:7.1.0'
+    compile 'com.graphql-java-kickstart:graphiql-spring-boot-starter:7.1.0'
+    compile 'com.graphql-java-kickstart:graphql-java-tools:6.1.0'
+    compile 'org.apache.commons:commons-lang3:3.5'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+
+
+    // https://mvnrepository.com/artifact/tech.tablesaw/tablesaw-core
+    compile group: 'tech.tablesaw', name: 'tablesaw-core', version: '0.38.1'
+
+
+
+
+
+
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+

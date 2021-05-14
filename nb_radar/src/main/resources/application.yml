@@ -1,0 +1,14 @@
+db:
+  user: "user"
+  pass: "password"
+
+spring:
+  application:
+    name: graphql-java-tools-app
+server:
+  port: 9003
+graphql:
+  servlet:
+    subscriptions:
+      websocket:
+        path: /subscriptions

@@ -1,0 +1,109 @@
+type Query {
+    AISDynamicMessage(filter: String): [AISDynamicMessage]
+    AISStaticMessage: [AISStaticMessage]
+    getAvailableFilterMethods: String
+}
+
+type AISDynamicMessage {
+    mmsi: Int
+    sog: Float
+    cog: Float
+    heading: Float
+    rot: Float
+    navstatus: AISNavStatus
+    timestamp: String
+    latitude: Float
+    longitude: Float
+    crsEPSG: String
+    providerID: String
+    additionalMetadata: String
+}
+type AISStaticMessage { 
+    callsign: String
+    mmsi: String
+    length: Float
+    width: Float
+    draught: Float
+    eta: String
+    vesselType: AISVesselType
+    imo: String
+    timestamp: String
+    name: String
+    destination: String
+    bow: Float
+    stern: Float
+    port: Float
+    staboard: Float
+    providerID: String
+    additionalMetadata: String
+}
+enum AISNavStatus { 
+    UnderwayUsingEngine
+    AtAnchor
+    NotUnderCommand
+    RestrictedManoeuverability
+    ConstrainedByHerDraught
+    Moored
+    Aground
+    EngagedInFishing
+    UnderwaySailing
+    ReservedForFutureUse
+    NotDefined
+}
+enum AISVesselType { 
+    DryCargo
+    DeckCargo
+    GeneralCargo
+    HeavyLiftShip
+    LivestockCarrier
+    BulkCarrier
+    OpenHatch
+    OreCarrier
+    OreOilCarrier
+    WoodChipCarrier
+    Container
+    RoRo
+    VehicleCarrier
+    Tanker
+    AsphaltTanker
+    ChemicalOilTanker
+    CrudeOilTanker
+    LNGTanker
+    LPGTanker
+    WaterTanker
+    Reefer
+    RefrigeratedFishCarrier
+    Passenger
+    CruiseShip
+    PassengerCargoShip
+    PassengerFerry
+    HighSpeedCraft
+    WinginGround
+    Other
+    AntiPollution
+    Barge
+    CableShip
+    Crewboat
+    DivingShip
+    Dredger
+    Drillship
+    Fishing
+    FloatingDock
+    Icebreaker
+    NavalMilitaryShip
+    NavigationAid
+    OceanographicResearch
+    OffshoreConstruction
+    OilWellShip
+    PatrolVessel
+    PilotShip
+    PipeCarrierPipelay
+    Pontoon
+    PortPoliceLawEnforce
+    RescueSalvageShip
+    SailingVessel
+    SupplyShip
+    TrainingShip
+    Tug
+    YachtPleasureCraft
+}

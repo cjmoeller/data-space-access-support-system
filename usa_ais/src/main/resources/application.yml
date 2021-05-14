@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: graphql-java-tools-app
+server:
+  port: 9002
+graphql:
+  servlet:
+    subscriptions:
+      websocket:
+        path: /subscriptions

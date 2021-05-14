@@ -1,0 +1,24 @@
+type Query {
+    AISMessage(filter: String): [AISMessage]
+    getAvailableFilterMethods: String
+}
+
+type AISMessage {
+    mmsi: Int
+    baseDateTime : String
+    lat: Float
+    lon: Float
+    sog: Float
+    cog: Float
+    heading: Float
+    vesselName : String
+    imo : String
+    callsign : String
+    vesselType : Int
+    status : Int
+    length : Float
+    width : Float
+    draft: Float
+    cargo : Int
+    transcieverClass : String
+}

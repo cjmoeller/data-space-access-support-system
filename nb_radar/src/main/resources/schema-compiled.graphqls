@@ -1,0 +1,22 @@
+directive @filterable(
+    availableMethods: String = "none"
+) on FIELD_DEFINITION | ENUM_VALUE
+
+
+type Query {
+    RadarTargetState (filter: String): [RadarTargetState]
+    getAvailableFilterMethods : String
+}
+
+type RadarTargetState { 
+    id: ID!
+    sog: Float
+    cog: Float
+    trackId: Int
+    timestamp: String @filterable(availableMethods: "equal,minmax")
+    latitude: Float @filterable(availableMethods: "minmax")
+    longitude: Float @filterable(availableMethods: "minmax")
+    crsEPSG: String
+    providerID: String
+    additionalMetadata: String
+}
